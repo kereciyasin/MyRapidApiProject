@@ -27,6 +27,7 @@ namespace MyRapidApiProject.Controllers
                 response.EnsureSuccessStatusCode();
                 var body = await response.Content.ReadAsStringAsync();
                 model = JsonConvert.DeserializeObject<List<ApiMovieViewModel>>(body);
+
                 return View(model);
             }
 
