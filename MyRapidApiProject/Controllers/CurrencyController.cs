@@ -1,4 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using MyRapidApiProject.Models;
+using Newtonsoft.Json;
 
 namespace MyRapidApiProject.Controllers
 {
@@ -23,9 +25,11 @@ namespace MyRapidApiProject.Controllers
             {
                 response.EnsureSuccessStatusCode();
                 var body = await response.Content.ReadAsStringAsync();
-                Console.WriteLine(body);
+                var values = JsonConvert.DeserializeObject<ApiExchanceViewModel>(body);
+                ViewBag.v = values.result;
+                return View();
             }
-            return View();
+
         }
     }
 }
